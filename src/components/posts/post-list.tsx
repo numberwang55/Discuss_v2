@@ -49,15 +49,17 @@ interface PostListProps {
 }
 
 // TODO: Get list of posts into this component somehow
-export default function PostList({fetchData}: PostListProps) {
+export default function PostList() {
     const [posts, setPosts] = useState<PostWithData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    console.log(posts)
 
     useEffect(() => {
         async function fetchPosts() {
             try {
-                const data = await fetch('/api/posts');;
+                const response = await fetch('/api/posts');
+                const data = await response.json()
                 setPosts(data);
                 setLoading(false);
             } catch (e: any) {
@@ -67,7 +69,7 @@ export default function PostList({fetchData}: PostListProps) {
         }
 
         fetchPosts();
-    }, [fetchData]);
+    }, []);
 
     if (loading) {
         return <div>Loading topics...</div>;

@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
 
-export async function GET() {
+export async function GET(slug: string) {
     try {
         const topics = await db.post.findMany({
+            where: {topic: {slug}},
             orderBy: [{
                 comments: {
                     _count: 'desc'
