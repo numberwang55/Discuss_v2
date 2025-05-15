@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
 
-export async function GET(slug: string) {
+export async function GET() {
     try {
-        const topics = await db.post.findMany({
-            where: {topic: {slug}},
+        const posts = await db.post.findMany({
             orderBy: [{
                 comments: {
                     _count: 'desc'
@@ -17,7 +16,7 @@ export async function GET(slug: string) {
             },
             take: 5
         })
-        return NextResponse.json(topics);
+        return NextResponse.json(posts);
     } catch (error) {
         console.error("Error fetching topics:", error);
         return NextResponse.json({ error: "Failed to fetch topics" }, { status: 500 });
