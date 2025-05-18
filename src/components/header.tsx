@@ -6,7 +6,6 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Input,
     Button,
     Avatar,
     Popover,
@@ -16,6 +15,7 @@ import {
 // import {auth} from "@/auth"
 import {useSession} from "next-auth/react"
 import * as actions from "@/actions"
+import SearchInput from "@/components/search-input";
 
 export default function Header() {
     const session = useSession()
@@ -57,7 +57,7 @@ export default function Header() {
             </NavbarBrand>
             <NavbarContent justify="center">
                 <NavbarItem>
-                    <Input/>
+                    <SearchInput/>
                 </NavbarItem>
             </NavbarContent>
             <NavbarContent justify="end">

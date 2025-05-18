@@ -23,15 +23,17 @@
 //     }
 // }
 
-// src/app/api/topics/[slug]/posts/route.ts
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
 
-interface Params {
-    slug?: string;
+interface RouteContext {
+    params: {
+        slug: string;
+    }
 }
 
-export async function GET(request: Request, {slug}: Params) {
+export async function GET(request: Request, {params}: RouteContext) {
+    const slug = params.slug
     if (!slug) {
         return NextResponse.json({ error: "Missing topic slug" }, { status: 400 });
     }
