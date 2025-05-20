@@ -16,6 +16,7 @@ import {
 import {useSession} from "next-auth/react"
 import * as actions from "@/actions"
 import SearchInput from "@/components/search-input";
+import {Suspense} from "react";
 
 export default function Header() {
     const session = useSession()
@@ -57,7 +58,9 @@ export default function Header() {
             </NavbarBrand>
             <NavbarContent justify="center">
                 <NavbarItem>
-                    <SearchInput/>
+                    <Suspense>
+                        <SearchInput/>
+                    </Suspense>
                 </NavbarItem>
             </NavbarContent>
             <NavbarContent justify="end">
