@@ -11,7 +11,8 @@ export default function Home() {
         <div className="col-span-3">
             <h1 className="text-xl m-2">Top Posts</h1>
             {/*<PostList fetchData={fetchTopPosts} />*/}
-            <PostList topicSlug={""} />
+            {/*<PostList topicSlug={""} />*/}
+            <PostList action={() => fetch("/api/top-posts")} />
         </div>
         <div className="border shadow py-3 px-2">
             <TopicCreateForm />

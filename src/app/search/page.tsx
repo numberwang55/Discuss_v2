@@ -1,4 +1,7 @@
+"use client"
+
 import {redirect} from "next/navigation";
+import PostList from "@/components/posts/post-list";
 
 interface SearchPageProps {
     searchParams: {
@@ -12,6 +15,7 @@ export default function SearchPage({searchParams}: SearchPageProps) {
         redirect("/")
     }
     return (
-        <div>{term}</div>
+        // <div>{term}</div>
+        <div><PostList action={() => fetch(`api/search?term=${term}`)}/></div>
     )
 }
